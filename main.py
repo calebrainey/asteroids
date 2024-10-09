@@ -7,6 +7,7 @@ from constants import *
 from player import *
 from asteroid import *
 from asteroidfield import *
+import sys
 
 def main():
   pygame.init()
@@ -47,6 +48,12 @@ def main():
     # Update using groups
     for update in updatable:
       update.update(dt)
+
+    # Check asteroid collision
+    for asteroid in asteroids:
+      if asteroid.check_collision(player):
+        print("Game Over!")
+        sys.exit()
 
     # Draw the player
     # player.draw(screen)
