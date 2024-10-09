@@ -1,13 +1,14 @@
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
+import sys
 import pygame
 from pygame.locals import *
 from constants import *
 from player import *
 from asteroid import *
 from asteroidfield import *
-import sys
+from shot import *
 
 def main():
   pygame.init()
@@ -20,14 +21,21 @@ def main():
   clock = pygame.time.Clock()
   dt = 0
 
+  # Groups
   updatable = pygame.sprite.Group()
   drawable = pygame.sprite.Group()
   asteroids = pygame.sprite.Group()
+  shots = pygame.sprite.Group()
   
+  # Asteroids
   Asteroid.containers = (asteroids, updatable, drawable)
   AsteroidField.containers = (updatable)
   asteroid_field = AsteroidField()
   
+  # Shots
+  Shot.containers = (shots, updatable, drawable)
+  
+  # Players
   x = SCREEN_WIDTH / 2
   y = SCREEN_HEIGHT / 2
 
