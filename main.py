@@ -41,7 +41,6 @@ def main():
 
   Player.containers = (updatable, drawable)
   player = Player(x, y)
-
   
   while True:
     for event in pygame.event.get():
@@ -62,6 +61,11 @@ def main():
       if asteroid.check_collision(player):
         print("Game Over!")
         sys.exit()
+      
+      for shot in shots:
+        if asteroid.check_collision(shot):
+          shot.kill()
+          asteroid.split()
 
     # Draw the player
     # player.draw(screen)
